@@ -1,4 +1,5 @@
 defmodule KV.Bucket do
+  use Agent
   def start_link options do
     Agent.start_link fn -> %{} end
   end
