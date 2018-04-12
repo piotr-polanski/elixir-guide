@@ -1,18 +1,19 @@
 defmodule KV.Bucket do
   use Agent
-  def start_link options do
-    Agent.start_link fn -> %{} end
+
+  def start_link(options) do
+    Agent.start_link(fn -> %{} end)
   end
 
-  def put bucket, key, value do
+  def put(bucket, key, value) do
     Agent.update(bucket, &Map.put(&1, key, value))
   end
 
-  def get bucket, key do
+  def get(bucket, key) do
     Agent.get(bucket, &Map.get(&1, key))
   end
 
-  def delete bucket, key do
-    Agent.get_and_update bucket, &Map.pop(&1,key)
+  def delete(bucket, key) do
+    Agent.get_and_update(bucket, &Map.pop(&1, key))
   end
 end
